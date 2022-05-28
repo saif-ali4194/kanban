@@ -1,0 +1,1005 @@
+* {
+	margin: 0;
+	padding: 0;
+}
+:root {
+	--cv1Init: 0%;
+	--cv1Final: 50%;
+	--cv2Init: 50%;
+	--cv2Final: 75%;
+	--cv3Init: 75%;
+	--cv3Final: 100%;
+}
+html {
+	scroll-behavior: smooth;
+}
+body {
+	background-color: rgb(129, 129, 129);
+}
+
+/*<< Customizing Scroll Bar >>*/
+body::-webkit-scrollbar {
+	width: 8px;
+}
+body::-webkit-scrollbar-track {
+	box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.433);
+}
+body::-webkit-scrollbar-thumb {
+	background-color: rgb(255, 255, 255);
+	/*outline: 1px solid rgba(0, 128, 255, 0.718);*/
+}
+
+/*---------- NAVBAR ----------*/
+header {
+	width: 100%;
+
+	position: static;
+	z-index: 2;
+	color: aliceblue;
+	display: flex;
+}
+
+/*<< Nav Logo >>*/
+.logo {
+	position: absolute;
+	margin-left: 10px;
+	background-image: url("data/images/logo.webp");
+	background-size: cover;
+	width: 8rem;
+	height: 4rem;
+}
+
+/*<< Nav Links Vertical >>*/
+nav {
+	position: absolute;
+	/*position: fixed;*/
+	right: 25%;
+}
+nav ul {
+	display: inline-flex;
+	list-style-type: none;
+}
+nav ul li a {
+	text-align: center;
+	display: block;
+	text-decoration: none;
+	padding: 10px 70px;
+	font-size: 1.2rem;
+	color: white;
+}
+nav ul li a:hover {
+	background-color: rgba(255, 255, 255, 0.823);
+	color: black;
+	transition: 0.7s ease;
+}
+#first {
+	border-left: 3px solid;
+}
+
+/*<< Nav Login-Btns >>*/
+.login,
+#logout {
+	display: block;
+	position: absolute;
+	right: 2%;
+	padding: 5px 0px;
+	margin-right: 10px;
+}
+.login button,
+#logout button {
+	padding: 5px;
+	width: 7rem;
+	height: 100%;
+	font-size: 1rem;
+	background-color: rgba(240, 248, 255, 0);
+	color: aliceblue;
+	border-style: solid;
+	border-color: rgb(181, 181, 181);
+}
+.login button:hover,
+#logout button:hover {
+	background-color: rgba(255, 255, 255, 0.672);
+	color: black;
+	cursor: pointer;
+	transition: 0.7s ease;
+}
+#logout {
+	display: none;
+}
+
+/*<< Nav Links Horizontal (for mobiles) >>*/
+.menu {
+	display: none;
+	background-image: url("data/images/menu.webp");
+	background-size: cover;
+	position: absolute;
+	right: 1.5rem;
+	top: 0.5rem;
+	z-index: 3;
+	width: 3rem;
+	height: 3rem;
+}
+.menu:hover {
+	cursor: pointer;
+	transform: rotate(90deg);
+	transition: ease 0.6s;
+}
+.list {
+	display: none;
+	position: absolute;
+	text-align: center;
+	right: 5rem;
+	z-index: 2;
+	top: 3.8rem;
+	width: 70%;
+	transition: linear;
+}
+.list ul,
+.links ul,
+.canvas ul {
+	list-style-type: none;
+}
+.list li a,
+.links li a {
+	display: block;
+	text-decoration: none;
+	font-size: 1.5rem;
+	padding: 1rem;
+	color: white;
+}
+.list li a:hover {
+	background-color: rgba(255, 255, 255, 0.426);
+	color: black;
+	transition: 0.7s ease;
+}
+#Lfirst {
+	border-top: solid;
+}
+
+/*			*			*/
+/*			*			*/
+
+/*---------- Section 1 ----------*/
+.sec1 {
+	z-index: 1;
+	margin-top: 0rem;
+	width: 100%;
+	height: 100vh;
+	background-image: url("data/images/bk1.webp");
+	background-attachment: fixed;
+	background-size: cover;
+	background-position: center;
+	/*transition: 2s ease-in-out;*/
+	overflow: hidden;
+}
+.quote {
+	position: relative;
+	width: 20rem;
+	top: 10rem;
+	right: 5rem;
+	float: right;
+	color: rgb(255, 255, 255);
+	font-size: 2em;
+	text-align: center;
+	animation: animate 6.5s ease-in;
+}
+
+#message {
+	display: none;
+	position: fixed;
+	padding: 5px 0px;
+	width: 20rem;
+	height: 8rem;
+	margin-left: 40%;
+	margin-top: 16rem;
+	background-color: white;
+	z-index: 6;
+	box-shadow: 0px 0px 5px black;
+	border-radius: 5px;
+	overflow: hidden;
+}
+#message h2 {
+	position: relative;
+	text-align: center;
+	width: 16rem;
+	left: 2rem;
+	border-style: solid;
+	border-width: 0px 0px 2px 0px;
+}
+#message #status,
+#message #status-error {
+	display: block;
+	text-align: center;
+	position: relative;
+	top: 1rem;
+	margin: auto;
+	width: 80%;
+	height: 25%;
+	font-size: 1.2em;
+}
+#message #tick,
+#message #cross {
+	position: relative;
+	margin: auto;
+	top: 0.5rem;
+	background-image: url("data/images/tick.png");
+	background-size: cover;
+	width: 2.6rem;
+	height: 2.5rem;
+}
+#message #status-error {
+	display: none;
+}
+
+#message #cross {
+	background-image: url("data/images/cross.png");
+	background-size: cover;
+	width: 2rem;
+	height: 2rem;
+}
+#login,
+#reg {
+	display: none;
+	position: fixed;
+	left: 33rem;
+	top: 10rem;
+	z-index: 5;
+	width: 25%;
+	height: 20rem;
+	background-color: white;
+	margin: auto;
+	padding: 1rem 1.5rem;
+	box-sizing: border-box;
+	font-family: Arial, Helvetica, sans-serif;
+	border-radius: 5px;
+	transition: opacity 0.5s;
+	animation: fadein 0.5s;
+	overflow: hidden;
+}
+#login h2,
+#reg h2 {
+	text-align: center;
+	margin-bottom: 1.5rem;
+	font-size: 1.9em;
+}
+#login label,
+#reg label {
+	margin: 5px;
+	font-size: 1.1em;
+}
+#login input,
+#reg input {
+	width: 96%;
+	height: 2rem;
+	margin: 5px 0px 22px 5px;
+	background-color: #f1f1f1;
+	border-style: none;
+	padding-left: 10px;
+	text-align: left;
+}
+#login input:focus,
+#reg input:focus {
+	outline: none;
+	background-color: #ddd;
+}
+#login #sub-btn,
+#reg #reg-sub-btn {
+	margin: 22px 0px 5px 5px;
+	width: 99%;
+	height: 2rem;
+	border-style: none;
+	background-color: rgb(65, 186, 251);
+	color: white;
+	font-size: 1em;
+}
+#login #sub-btn:hover,
+#reg #reg-sub-btn:hover {
+	background-color: rgb(57, 159, 214);
+}
+
+#login #sub-btn:disabled,
+#reg #reg-sub-btn:disabled {
+	background-color: rgb(182, 182, 182);
+}
+#login #del,
+#reg #reg-del {
+	text-decoration: none;
+	float: right;
+	color: rgb(52, 152, 206);
+	font-weight: 600;
+	font-size: 1.1em;
+}
+#login #del:hover,
+#reg-del:hover {
+	transform: rotate(360deg);
+	transition: 2s ease;
+	font-size: 1.5;
+}
+#login #log-error,
+#reg #reg-error {
+	display: none;
+	color: red;
+	font-size: 0.7em;
+}
+#reg {
+	top: 1rem;
+	height: 40rem;
+}
+#reg input[type="date"] {
+	color: rgb(122, 120, 120);
+}
+
+/*			*			*/
+/*			*			*/
+
+/*---------- Section 2 ----------*/
+#sec2 {
+	z-index: 1;
+	height: 100vh;
+	width: 100%;
+	display: flex;
+	overflow: hidden;
+}
+#log {
+	display: none !important;
+	position: absolute;
+	z-index: 10;
+	width: 100%;
+	height: 105vh;
+	/* ctrl + k, ctrl + c comment out shortcut */
+	background-color: #000000;
+	background-image: linear-gradient(147deg, #000000 0%, #2c3e50 74%);
+	display: flex;
+	overflow: hidden;
+}
+
+#log #list-items {
+	position: absolute;
+	width: 40%;
+	height: 90%;
+	left: 5%;
+	top: 3%;
+	/* border-color: whitesmoke;
+	border-style: solid; */
+}
+#log #list-items ul {
+	list-style-type: none;
+	color: white;
+	margin-left: 5%;
+	font-size: 1.5em;
+	font-family: "Patrick Hand";
+	text-align: left;
+	list-style-position: inside;
+}
+#log #list-items ul li {
+	margin-top: 2%;
+}
+#log #list-items #space {
+	margin-left: 5%;
+}
+#log #list-items ul li::before {
+	content: "✓ ";
+}
+
+#log #videos {
+	position: absolute;
+	width: 40%;
+	height: 90%;
+	right: 5%;
+	top: 5%;
+}
+#log #videos #web1,
+#log #videos #web2,
+#log #videos #web3,
+#log #videos #web4 {
+	position: relative;
+	width: 65%;
+	height: 35%;
+	border-radius: 1.4rem;
+}
+#log #videos #web1 {
+	right: 20%;
+	bottom: 5%;
+}
+#log #videos #web2 {
+	left: 46%;
+	bottom: 20%;
+}
+#log #videos #web3 {
+	right: 20%;
+	bottom: 30%;
+}
+#log #videos #web4 {
+	left: 46%;
+	bottom: 44%;
+}
+#avatar {
+	background-image: url("data/images/a1.png");
+	background-size: cover;
+	background-position: center;
+	display: block;
+	position: absolute;
+	z-index: 3;
+	width: 5rem;
+	height: 5rem;
+	right: 2rem;
+	margin-top: 1rem;
+	border-radius: 100%;
+	box-shadow: 0px 0px 5px black;
+}
+#online {
+	position: relative;
+	border-radius: 100%;
+	background-color: rgb(6, 243, 6);
+	width: 1rem;
+	height: 1rem;
+	left: 3.5rem;
+	top: 3.9rem;
+	box-shadow: 0px 0px 5px black;
+}
+#upload {
+	position: relative;
+	top: 0.6rem;
+	width: 4rem;
+	border-radius: 100%;
+}
+#upload-image {
+	display: none;
+	width: 5rem;
+	height: 1.5rem;
+	font-size: 0.6rem;
+	border-style: none;
+	background-color: rgba(59, 58, 58, 0.37);
+	color: white;
+	border-radius: 4px;
+	border-radius: 100%;
+	cursor: pointer;
+}
+#upload-image:hover {
+	background-color: rgb(82, 82, 82);
+}
+
+#avatar-sub-btn {
+	display: none;
+	position: absolute;
+	height: 1.5rem;
+	width: 5rem;
+	right: 2rem;
+	margin-top: 7rem;
+	background-color: rgb(35, 109, 219);
+	color: white;
+	border-style: none;
+	border-radius: 5px;
+}
+#avatar-sub-btn:hover {
+	background-color: rgb(22, 64, 128);
+}
+
+#btn {
+	position: absolute;
+	width: 80%;
+	height: 2rem;
+	left: 8rem;
+	margin-top: 1.5rem;
+	overflow: hidden;
+}
+#convert,
+#theme {
+	position: relative;
+	height: 2rem;
+	border-radius: 0px 5px 0px 0px;
+	width: 20%;
+	border-style: none;
+	/*background-color: rgb(67, 125, 202);*/
+	background-color: rgb(55, 55, 55);
+	color: wheat;
+	font-weight: bold;
+	font-size: 1.05em;
+	overflow: hidden;
+	white-space: nowrap;
+}
+#convert:hover,
+#theme:hover {
+	background-color: rgb(85, 85, 85);
+}
+
+#theme {
+	border-radius: 5px 5px 0px 0px;
+	left: 1rem;
+}
+
+#Graphs {
+	display: none;
+	position: relative;
+	top: 3.5rem;
+	z-index: 3;
+	left: 8rem;
+	width: 80%;
+	height: 35rem;
+	background-color: rgb(44, 44, 44);
+	display: flex;
+	box-shadow: 0px 2px 20px rgb(0, 0, 0);
+	font-family: sans-serif;
+	overflow: hidden;
+}
+#Graphs h2 {
+	width: 20rem;
+	text-align: center;
+	position: relative;
+	left: 26rem;
+	border-style: solid;
+	border-width: 0px 0px 1px 0px;
+	color: wheat;
+	top: 1rem;
+}
+#Graphs #bar {
+	position: relative;
+	top: 3rem;
+	left: 3rem;
+	border-width: 2px;
+	width: 50%;
+	height: 80%;
+	display: flex;
+	transition: ease 3s;
+}
+#total,
+#on-going,
+#Completed {
+	border-style: groove;
+	border-color: #ddd;
+	position: relative;
+	top: 2%;
+	left: 1rem;
+	width: 25%;
+	height: 90%;
+	border-radius: 10px;
+	color: white;
+	font-weight: bold;
+	text-align: center;
+	word-wrap: break-word;
+	overflow: hidden;
+}
+#total p {
+	position: relative;
+	bottom: 10rem;
+}
+#on-going {
+	left: 3rem;
+}
+#Completed {
+	left: 5rem;
+}
+
+#total #value1,
+#on-going #value2,
+#Completed #value3 {
+	position: absolute;
+	width: 100%;
+	height: 20%;
+	bottom: 0;
+	background-color: rgb(241, 101, 73);
+	color: white;
+	overflow: hidden;
+}
+#on-going #value2 {
+	background-color: rgb(169, 83, 245);
+}
+
+#Completed #value3 {
+	background-color: rgb(55, 207, 44);
+}
+
+/* Pie Char */
+#pie {
+	position: absolute;
+	right: 3rem;
+	top: 4.8rem;
+	width: 40%;
+	height: 80%;
+}
+
+#chart {
+	position: relative;
+	width: 80%;
+	height: 80%;
+	background: conic-gradient(
+		rgb(241, 101, 73) var(--cv1Init) var(--cv1Final),
+		rgb(169, 83, 245) var(--cv2Init) var(--cv2Final),
+		rgb(55, 207, 44) var(--cv3Init) var(--cv3Final)
+	);
+	border-radius: 100%;
+	left: 3rem;
+	top: 2rem;
+}
+/*<< Main Panel >>*/
+/* THEMES */
+
+.canvas.theme0 {
+	background-image: linear-gradient(
+		to right,
+		rgb(77, 145, 255),
+		rgb(198, 66, 224)
+	);
+
+	/*background-image: linear-gradient(to right, #eb3349, #f45c43);
+	*/
+}
+.canvas.theme0 h2,
+.canvas.theme1 h2,
+.canvas.theme2 h2 {
+	color: black;
+	border-color: black;
+}
+.canvas.theme0 li,
+.canvas.theme1 li,
+.canvas.theme2 li {
+	background-color: rgb(255, 255, 255);
+	color: black;
+}
+.canvas.theme0 .del,
+.canvas.theme1 .del,
+.canvas.theme2 .del {
+	color: black;
+}
+.canvas.theme0 li:hover,
+.canvas.theme1 li:hover,
+.canvas.theme2 li:hover {
+	background-color: rgb(229, 227, 227);
+}
+.canvas.theme0 input[type="time"],
+.canvas.theme0 input[type="date"],
+.canvas.theme1 input[type="time"],
+.canvas.theme1 input[type="date"],
+.canvas.theme2 input[type="time"],
+.canvas.theme2 input[type="date"] {
+	color: black;
+}
+.canvas.theme0 input[type="button"],
+.canvas.theme1 input[type="button"],
+.canvas.theme2 input[type="button"] {
+	background-color: rgb(214, 213, 213);
+	color: rgb(83, 80, 80);
+}
+
+.canvas.theme0 input[type="button"]:hover,
+.canvas.theme1 input[type="button"]:hover,
+.canvas.theme2 input[type="button"]:hover {
+	background-color: rgb(184, 184, 184);
+}
+
+.canvas.theme0 input[type="text"],
+.canvas.theme1 input[type="text"],
+.canvas.theme2 input[type="text"] {
+	background-color: rgb(214, 214, 214);
+}
+
+.canvas.theme1 {
+	background-image: linear-gradient(to right, #eacda3, #d6ae7b);
+}
+
+.canvas.theme2 {
+	background-image: linear-gradient(to right, #ff512f, #dd2476);
+}
+
+.canvas {
+	position: relative;
+	top: 3.5rem;
+	left: 8rem;
+	width: 80%;
+	height: 35rem;
+	background-color: rgb(44, 44, 44);
+	background-size: cover;
+	background-attachment: fixed;
+	display: flex;
+	box-shadow: 0px 2px 20px rgb(0, 0, 0);
+	font-family: sans-serif;
+}
+
+/*<< Column 1 >>*/
+.col1 {
+	position: relative;
+	left: 2.5rem;
+	top: 2rem;
+	width: 30%;
+	height: 100%;
+	text-align: center;
+	display: flex;
+	flex-direction: column;
+	overflow: hidden;
+}
+
+/*<< Column 2 >>*/
+.col2 {
+	position: relative;
+	top: 2rem;
+	left: 3.5rem;
+	width: 30%;
+	height: 100%;
+	text-align: center;
+	display: flex;
+	flex-direction: column;
+	overflow: hidden;
+}
+
+/*<< Column 3 >>*/
+.col3 {
+	position: relative;
+	top: 2rem;
+	left: 4.5rem;
+	width: 30%;
+	height: 100%;
+	text-align: center;
+	display: flex;
+	flex-direction: column;
+	overflow: hidden;
+}
+.canvas h2 {
+	color: wheat;
+	border-bottom: 1px solid wheat;
+}
+input[type="text"] {
+	margin-top: 1rem;
+	margin-left: 1rem;
+	width: 90%;
+	height: 1.5rem;
+	border-radius: 5px;
+	border-style: none;
+	text-align: center;
+}
+
+input[type="button"] {
+	margin-top: 0.5rem;
+	margin-left: 1rem;
+	width: 90%;
+	height: 1.7rem;
+	border-radius: 5px;
+	border-style: none;
+	background-color: rgba(3, 101, 153, 0.652);
+	color: white;
+}
+input[type="button"]:hover {
+	background-color: rgba(3, 147, 225, 0.652);
+	cursor: pointer;
+}
+.canvas #error,
+#error2,
+#error3 {
+	color: red;
+	font-size: 0.7em;
+	margin-top: 5px;
+	text-align: left;
+	margin-left: 1rem;
+}
+
+.canvas li {
+	margin-top: 0.5rem;
+	margin-left: 0.8rem;
+	padding: 0.2rem 0rem;
+	color: rgb(255, 255, 255);
+	border-radius: 5px;
+	width: 92%;
+	font-size: 0.9em;
+	background-color: rgba(0, 136, 199, 0.734);
+	overflow: hidden;
+}
+.canvas li:hover {
+	cursor: grab;
+	background-color: rgba(0, 152, 223, 0.734);
+}
+.canvas li:active {
+	background-color: rgb(240, 99, 99);
+}
+.canvas a {
+	text-decoration: none;
+	color: white;
+	float: right;
+	margin-right: 0.5rem;
+}
+.canvas a:hover {
+	color: black;
+	transform: rotate(90deg);
+	transition: 1s ease;
+}
+#for-drag {
+	visibility: hidden;
+	height: 0.7rem;
+}
+.draggable.dragging {
+	background-color: rgb(240, 99, 99);
+}
+input[type="time"] {
+	background-color: rgba(0, 136, 199, 0);
+	color: white;
+	border-style: none;
+	font-size: 1.2em;
+}
+
+input[type="date"] {
+	background-color: rgba(0, 136, 199, 0);
+	color: white;
+	border-style: none;
+	margin-left: 3px;
+}
+
+/*			*			*/
+/*			*			*/
+
+/*---------- Section 3	----------*/
+.sec3 {
+	width: 100%;
+	height: 109vh;
+	z-index: 1;
+
+	margin-top: 2rem;
+	background-image: url("data/images/aboutus1.webp");
+	background-size: cover;
+	background-position: center;
+	background-attachment: fixed;
+	overflow: hidden;
+}
+.content {
+	position: relative;
+	left: 4rem;
+	top: 4.4rem;
+	width: 45%;
+	height: 80vh;
+	text-align: center;
+}
+.content h2 {
+	font-size: 3rem;
+	font-family: "Permanent Marker", sans-serif;
+	color: rgb(255, 255, 255);
+}
+.content p {
+	color: rgb(255, 255, 255);
+	font-size: 1.5em;
+	font-family: "Patrick Hand";
+}
+
+/*			*			*/
+/*			*			*/
+
+/*---------- FOOTER	----------*/
+footer {
+	width: 100%;
+	height: 24rem;
+	position: relative;
+	z-index: 2;
+	display: flex;
+	background-color: rgb(0, 122, 179);
+	overflow: hidden;
+}
+
+/*<< Common Properties >>*/
+#headings {
+	margin: auto;
+	font-size: 1.5em;
+	font-weight: bold;
+	color: black;
+	font-family: "Eczar", sans-serif;
+}
+
+/*<< Section 1 Message >>*/
+.message {
+	width: 30rem;
+	height: 16rem;
+	position: relative;
+	left: 3rem;
+	top: 2rem;
+}
+.message p,
+.info p {
+	font-size: 1.3em;
+	color: whitesmoke;
+	font-family: "Patrick Hand";
+}
+
+/*<< Section 2 Links >>*/
+.links {
+	height: 18rem;
+	text-align: center;
+	position: relative;
+	left: 15rem;
+	top: 2rem;
+}
+.links li {
+	height: 4rem;
+}
+.links li a {
+	margin-top: 0.1rem;
+	border: 1px solid rgba(72, 69, 69, 0.666);
+	font-family: "Patrick Hand";
+	padding: 0.5rem;
+}
+.links a:hover {
+	background-color: rgba(255, 255, 255, 0.816);
+	color: black;
+	transition: 0.7s ease;
+}
+
+/*<< Section 3 Contacts >>*/
+.info {
+	height: 15rem;
+	width: 20rem;
+	position: relative;
+	left: 25rem;
+	top: 2rem;
+	text-align: right;
+}
+.info p {
+	margin-top: 2rem;
+}
+
+/* << MY Rights :) >>*/
+.patented {
+	position: absolute;
+	width: 60rem;
+	height: 2rem;
+	top: 21rem;
+	left: 13rem;
+	text-align: center;
+	color: wheat;
+}
+
+/*			*			*/
+/*			*			*/
+
+/*---------- For Responsivness	----------*/
+@media screen and (max-width: 1026px) {
+	nav {
+		display: none;
+	}
+	.login {
+		display: none;
+	}
+	.menu {
+		display: none;
+	}
+	.quote {
+		display: none;
+	}
+	#avatar {
+		display: none;
+	}
+}
+@media screen and (max-width: 821px) {
+	.message p {
+		font-size: 1rem;
+	}
+	#reg {
+		font-size: 0.8em;
+	}
+	#login,
+	#reg {
+		left: 5rem;
+		width: 70%;
+	}
+}
+
+/*			*			*/
+/*			*			*/
+@keyframes animate {
+	0% {
+		color: rgba(255, 255, 255, 0.008);
+	}
+	100% {
+		color: rgb(255, 255, 255);
+	}
+}
+
+@keyframes fadein {
+	0% {
+		opacity: 0;
+	}
+	100% {
+		opacity: 1;
+	}
+}
+@keyframes fadeout {
+	0% {
+		opacity: 1;
+	}
+	100% {
+		opacity: 0;
+	}
+}
