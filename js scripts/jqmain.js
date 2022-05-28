@@ -13,7 +13,7 @@ $(document).ready(function () {
 	);
 
 	//Uploading image in avatar (upload image btn)
-	$("#temp").change(function (e) {
+	$("#avatar-ch-btn").change(function (e) {
 		let path = URL.createObjectURL(e.target.files[0]);
 		$("#avatar").css("background-image", "url(" + path + ")");
 	});
