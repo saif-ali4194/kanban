@@ -17,7 +17,7 @@
                 return 5; //return error
             }
         } else {
-            $data = "INSERT INTO `kanban`.`users` (`name`, `DOB`, `ph`, `email`, `pass`) VALUES ('$name', '$DOB', '$ph', '$email', '$hash')";
+            $data = "INSERT INTO `kanban`.`users` (`name`, `DOB`, `ph`, `email`, `pass`, `image_name`) VALUES ('$name', '$DOB', '$ph', '$email', '$hash', 'a1.png')";
     
             if($con -> query($data) == true)    return 1;
             else    return 2;

@@ -1,4 +1,25 @@
+function profile_pic() {
+	$flag = sessionStorage.getItem("log");
+
+	if ($flag == 1) {
+		let data = 1;
+		$.ajax({
+			url: "./php scripts/getImage.php",
+			data: data,
+			success: function (res) {
+				let data = JSON.parse(res);
+				let path = "./data/uploads/" + data.img;
+				$("#avatar").css("background-image", 'url("' + path + '")');
+			},
+		});
+	}
+}
+
 $(document).ready(function () {
+	// Functions //
+	profile_pic();
+
+	// event handlers //
 	$("#sub-btn").on("click", function () {
 		let email = $("#log-email").val();
 		let pass = $("#log-pass").val();
